@@ -12,10 +12,7 @@ namespace Example
 		static void Main(string[] args)
 		{
 			/* create Gif */
-			//you should replace filepath
-			//String [] imageFilePaths = new String[]{"c:\\01.png","c:\\02.png","c:\\03.png"}; 
-            string[] imageFilePaths = Directory.GetFiles(@"C:\Users\brush\Desktop\images"); 
-			String outputFilePath = "c:\\test.gif";
+            string[] imageFilePaths = Directory.GetFiles(@"C:\Users\someuser\Desktop\images"); 
 			AnimatedGifEncoder e = new AnimatedGifEncoder();
             MemoryStream mem = new MemoryStream();
             e.Start(mem);
@@ -28,15 +25,15 @@ namespace Example
 			}
 			e.Finish();
 
-            File.WriteAllBytes("c:/users/brush/desktop/test.gif", mem.GetBuffer()); 
+            File.WriteAllBytes("c:/users/someuser/desktop/test.gif", mem.GetBuffer()); 
 
 			/* extract Gif */
 			GifDecoder gifDecoder = new GifDecoder();
-            gifDecoder.Read("c:/users/brush/desktop/test.gif");
+            gifDecoder.Read("c:/users/someuser/desktop/test.gif");
 			for ( int i = 0, count = gifDecoder.GetFrameCount(); i < count; i++ ) 
 			{
 				Image frame = gifDecoder.GetFrame( i );  // frame i
-				frame.Save( "c:/users/brush/desktop/" + Guid.NewGuid().ToString() + ".png", ImageFormat.Png );
+                frame.Save("c:/users/someuser/desktop/" + Guid.NewGuid().ToString() + ".png", ImageFormat.Png);
 			}
 		}
 	}
